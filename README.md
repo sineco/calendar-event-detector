@@ -5,7 +5,7 @@ This project processes real-time chat streams to detect calendar events using a 
 
 ## Features
 - **Real-Time Processing**: Handles WebSocket streams and detects entities like `DATE`, `TIME`, and `MEETING PLATFORM`.
-- **Fine-Tuned BERT Model**: Uses `bert-finetuned-ner` from Hugging Face for entity recognition.
+- **Fine-Tuned BERT Model**: Uses a locally trained `bert-finetuned-ner` that I hosted in Hugging Face for entity recognition.
 
 ## Model Information
 The fine-tuned BERT model (`bert-fine-tuned-ner`) is hosted on Hugging Face and will be automatically downloaded when the application runs. This approach was taken to avoid uploading the full model to GitHub due to its large size. However, the script used to fine-tune the model is available in the repository at `fine_tuning_scripts.py`.
