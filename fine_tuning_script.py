@@ -28,7 +28,6 @@ data_files = {"train": "./data/generated_train.json",
 raw_datasets =  load_dataset("json", data_files=data_files )
 
 # Define the label set
-label_set = ['O', 'B-PLATFORM', 'I-PLATFORM', 'B-TIME', 'I-TIME', 'B-DATE', 'I-DATE']
 LABEL_SET = ['O', 'B-PLATFORM', 'I-PLATFORM', 'B-TIME', 'I-TIME', 'B-DATE', 'I-DATE']
 
 # Rename some columns
@@ -124,7 +123,7 @@ tf_eval_dataset = tokenized_datasets["validation"].to_tf_dataset(
     batch_size=16,
 )
 
-id2label = {i: label for i, label in enumerate(label_set)}
+id2label = {i: label for i, label in enumerate(LABEL_SET)}
 label2id = {v: k for k, v in id2label.items()}
 
 
@@ -172,7 +171,7 @@ model.fit(
 metric = evaluate.load("seqeval")
 
 labels = raw_datasets["train"][0]["labels"]
-labels = [label_set[i] for i in labels]
+labels = [LABEL_SET[i] for i in labels]
 
 # Create fake predictions
 predictions = labels.copy()
@@ -190,8 +189,8 @@ for batch in tf_eval_dataset:
         for predicted_idx, label_idx in zip(prediction, label):
             if label_idx == -100:
                 continue
-            all_predictions.append(label_set[predicted_idx])
-            all_labels.append(label_set[label_idx])
+            all_predictions.append(LABEL_SET[predicted_idx])
+            all_labels.append(LABEL_SET[label_idx])
 metric.compute(predictions=[all_predictions], references=[all_labels])
 print(metric.compute(predictions=[all_predictions], references=[all_labels]))
 
