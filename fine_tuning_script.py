@@ -13,10 +13,6 @@ print(tf.__version__)
 # Using this because I don't have GPU
 #export TF_ENABLE_MIXED_PRECISION=0
 
-# TO-DO Find an already fine-tuned model 
-# Wrap the model on Docker
-
-
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
