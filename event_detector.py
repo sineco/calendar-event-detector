@@ -56,12 +56,12 @@ class EventDetector:
         Parameters:
             ner_results (list): A list of dictionaries representing the results of a named entity recognition (NER) analysis.
             Each dictionary should have the following keys:
-                "entity_group" (str): The group to which the entity belongs, such as "DATE", "TIME", or "MEETING".
+                "entity_group" (str): The group to which the entity belongs, such as "DATE", "TIME", or "PLATFORM".
         Returns:
 	        bool: True if any entities in the NER results are related to events, False otherwise.	
         """
         for entity in ner_results:
-            if entity["entity_group"] in {"DATE", "TIME", "MEETING"}:
+            if entity["entity_group"] in {"DATE", "TIME", "PLATFORM"}:
                 return True
         return False
 

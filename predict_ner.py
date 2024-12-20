@@ -12,7 +12,7 @@ sample_text = "Let's schedule a meeting on Thursday at 10 AM in the Zoom room."
 
 # Get predictions
 results = ner_pipeline(sample_text)
-
+print(results)
 # Display predictions
 print(f"Input Text: {sample_text}")
 print("Predictions:")
