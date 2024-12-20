@@ -3,6 +3,31 @@ import json
 from transformers import pipeline, AutoTokenizer
 
 class EventDetector:
+    """
+    A class to detect events from messages using a fine-tuned BERT model.
+
+    Attributes
+    ----------
+    results_dir : str
+        Directory to save the results.
+    model_path : str
+        Path to the fine-tuned BERT model.
+    current_event : list
+        List to store the current event.
+    tokenizer : transformers.AutoTokenizer
+        Tokenizer for the BERT model.
+    ner_pipeline : transformers.pipelines.Pipeline
+        Named Entity Recognition (NER) pipeline for token classification.
+
+    Methods
+    -------
+    __init__(self, results_dir="results"):
+        Initializes the EventDetector with the specified results directory.
+    
+    process_message(self, message):
+        Processes a message to detect named entities.
+    """
+     
     def __init__(self, results_dir="results"):
         self.model_path = "raraujo/bert-finetuned-ner"
         self.results_dir = results_dir
