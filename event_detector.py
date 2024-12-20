@@ -26,6 +26,12 @@ class EventDetector:
     
     process_message(self, message):
         Processes a message to detect named entities.
+
+    is_event_related(self, ner_results):
+        Checks if any entities in the NER results are related to events.
+
+    save_event(self):
+        Saves the current event to a JSON file.
     """
      
     def __init__(self, results_dir="results"):
