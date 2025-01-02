@@ -46,6 +46,21 @@ class EventDetector:
         os.makedirs(self.results_dir, exist_ok=True)
 
     def process_message(self, message):
+        """
+        Processes an incoming message to detect and handle event-related content.
+
+        Args:
+            message (dict): A dictionary containing the message data. The key 'message' 
+                            should contain the text to be processed.
+
+        Returns:
+            None
+
+        Side Effects:
+            - Prints the Named Entity Recognition (NER) results for debugging purposes.
+            - Appends the message to the current event if it is event-related.
+            - Saves the current event if the message is not event-related and there is an ongoing event.
+        """
         ner_results = self.ner_pipeline(message['message'])
         print(f"NER Results for message '{message['message']}': {ner_results}")  # Debugging log
 
@@ -72,10 +87,27 @@ class EventDetector:
         return False
 
     def save_event(self):
+        """
+        Save the current event to a JSON file in the results directory.
+
+        This function generates a unique event ID based on the number of files
+        already present in the results directory. It then saves the current event
+        as a JSON file with the name format 'event_<event_id>.json'. After saving,
+        it clears the current event list.
+        """
+        # If there are no events to save, return immediately
         if not self.current_event:
             return
+
+        # Generate a unique event ID based on the number of files in the results directory
         event_id = len(os.listdir(self.results_dir)) + 1
+
+        # Create the file path for the new event file
         file_path = os.path.join(self.results_dir, f"event_{event_id:04d}.json")
+
+        # Save the current event to the file in JSON format
         with open(file_path, "w") as f:
             json.dump({"lines": self.current_event}, f, indent=4)
+
+        # Clear the current event list
         self.current_event = []
