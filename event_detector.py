@@ -68,7 +68,7 @@ class EventDetector:
             self.current_event.append(message)
         else:
             if self.current_event:
-                self.save_event()
+                self.save_event(ner_results)
 
     def is_event_related(self, ner_results):
         """ 
@@ -86,14 +86,19 @@ class EventDetector:
                 return True
         return False
 
-    def save_event(self):
+    def save_event(self, ner_results):
         """
-        Save the current event to a JSON file in the results directory.
+        Save the current event and NER results to a JSON file in the results directory.
 
         This function generates a unique event ID based on the number of files
         already present in the results directory. It then saves the current event
-        as a JSON file with the name format 'event_<event_id>.json'. After saving,
-        it clears the current event list.
+        and NER results as a JSON file with the name format 'event_<event_id>.json'.
+        After saving, it clears the current event list.
+
+        Parameters
+        ----------
+        ner_results : list
+            A list of dictionaries representing the results of a named entity recognition (NER) analysis.
         """
         # If there are no events to save, return immediately
         if not self.current_event:
@@ -105,9 +110,9 @@ class EventDetector:
         # Create the file path for the new event file
         file_path = os.path.join(self.results_dir, f"event_{event_id:04d}.json")
 
-        # Save the current event to the file in JSON format
+        # Save the current event and NER results to the file in JSON format
         with open(file_path, "w") as f:
-            json.dump({"lines": self.current_event}, f, indent=4)
+            json.dump({"lines": self.current_event, "ner_results": ner_results}, f, indent=4)
 
         # Clear the current event list
         self.current_event = []
