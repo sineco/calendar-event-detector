@@ -1,0 +1,11 @@
+{
+    "lines": [
+        {
+            "user": "ubotu",
+            "message": "The linux terminal or command-line interface is very powerful. Open a terminal via Applications -> Accessories -> Terminal (Gnome) or K-menu -> System -> Konsole (KDE).  Guide: https://help.ubuntu.com/community/UsingTheTerminal",
+            "ts": 1704183732.1888661,
+            "seqid": 557860
+        }
+    ],
+    "ner_results": []
+}

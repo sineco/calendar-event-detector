@@ -1,0 +1,17 @@
+{
+    "lines": [
+        {
+            "user": "kaan",
+            "message": "how about google meet or discord?",
+            "ts": 1704183921.2886858,
+            "seqid": 559751
+        },
+        {
+            "user": "luke_",
+            "message": "discord works for me, when are folks free?",
+            "ts": 1704183921.3886857,
+            "seqid": 559752
+        }
+    ],
+    "ner_results": []
+}

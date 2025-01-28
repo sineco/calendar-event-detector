@@ -1,0 +1,11 @@
+{
+    "lines": [
+        {
+            "user": "ubotu",
+            "message": "Ubuntu can be installed in lots of ways. Please see https://help.ubuntu.com/community/Installation for documentation. Problems during install? See https://wiki.ubuntu.com/CommonProblemsInstall and https://wiki.ubuntu.com/DapperReleaseNotes/UbiquityKnownIssues - Don't want to use a CD? Try http://tinyurl.com/3exghs - See also !automate",
+            "ts": 1704183705.088892,
+            "seqid": 557589
+        }
+    ],
+    "ner_results": []
+}

@@ -62,7 +62,9 @@ class EventDetector:
             - Saves the current event if the message is not event-related and there is an ongoing event.
         """
         ner_results = self.ner_pipeline(message['message'])
-        print(f"NER Results for message '{message['message']}': {ner_results}")  # Debugging log
+        #print(f"NER Results for message '{message['message']}': {ner_results}")  # Debugging log
+        if len(ner_results) > 0:
+            print(f"NER Results for message '{message['message']}': {ner_results}")  # Debugging log
 
         if self.is_event_related(ner_results):
             self.current_event.append(message)
@@ -110,9 +112,13 @@ class EventDetector:
         # Create the file path for the new event file
         file_path = os.path.join(self.results_dir, f"event_{event_id:04d}.json")
 
+        # Extract entity groups and their respective labels
+        entities = [{"entity_group": entity["entity_group"], "word": entity["word"]} for entity in ner_results]
+        print(f"ENtities: {entities}")
+
         # Save the current event and NER results to the file in JSON format
         with open(file_path, "w") as f:
-            json.dump({"lines": self.current_event, "ner_results": ner_results}, f, indent=4)
+            json.dump({"lines": self.current_event, "ner_results": entities}, f, indent=4)
 
         # Clear the current event list
         self.current_event = []

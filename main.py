@@ -10,7 +10,7 @@ async def listen(url, detector):
         while True:
             message = await websocket.recv()
             data = json.loads(message)
-            print(data) # remove
+            #print(data) # remove
             detector.process_message(data) 
 
 if __name__ == "__main__":
